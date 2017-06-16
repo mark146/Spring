@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/board">boardController</prop>
+				<prop key="/write">writeController</prop>
+				<prop key="/content">contentController</prop>
+				<prop key="/updateForm">updateFormController</prop>
+				<prop key="/deleteForm">deleteFormController</prop>
+				<prop key="/writeForm">writeFormController</prop>
+				<prop key="/update">updateController</prop>
+				<prop key="/delete">deleteController</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<bean id="boardVO" class="vo.BoardVO" />
+
+	<bean id="boardController" class="controller.BoardController"
+		p:boardService-ref="boardService" p:boardVO-ref="boardVO" />
+
+	<bean id="writeController" class="controller.WriteController"
+		p:boardService-ref="boardService" p:boardVO-ref="boardVO" />
+
+	<bean id="contentController" class="controller.ContentController"
+		p:boardService-ref="boardService" p:boardVO-ref="boardVO" />
+
+	<bean id="updateController" class="controller.UpdateController"
+		p:boardService-ref="boardService" p:boardVO-ref="boardVO" />
+
+	<bean id="deleteController" class="controller.DeleteController"
+		p:boardService-ref="boardService" p:boardVO-ref="boardVO" />
+
+
+	<bean id="writeFormController" class="controller.WriteFormController"
+		p:boardVO-ref="boardVO" />
+
+	<bean id="updateFormController" class="controller.UpdateFormController"
+		p:boardService-ref="boardService" p:boardVO-ref="boardVO" />
+
+	<bean id="deleteFormController" class="controller.DeleteFormController"
+		p:boardVO-ref="boardVO" />
+
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" 
+		p:prefix="/board/"
+		p:suffix=".jsp" />
+
+</beans>
