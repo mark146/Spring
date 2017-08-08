@@ -10,7 +10,7 @@
 </head>
 <body>
 	<ul>
-		<li><a href="<%=contextPath%>/jdbc/board">JDBC 게시판1</a></li>
+		<li><a href="<%=contextPath%>/jdbc/board">JDBC 게시판</a></li>
 	</ul>
 </body>
 </html>
