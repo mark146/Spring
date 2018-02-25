@@ -17,7 +17,7 @@ public class MyBatisTest {
 
 
 
-	@Inject//스프링이 DI 해준다
+	@Inject
 	private SqlSessionFactory sqlFactory;
 
 	@Test
