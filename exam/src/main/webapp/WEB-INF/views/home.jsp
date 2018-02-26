@@ -18,7 +18,6 @@
 
 <a href="<%=contextPath %>/exam1">예제1</a><br>
 <a href="<%=contextPath %>/exam2">예제2</a><br>
-<a href="<%=contextPath %>/doJSON">예제3</a>
 
 </body>
 </html>
