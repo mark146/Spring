@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.com.vo.BoardVO;
+import org.com.vo.*;
 
 @Repository
 public class BoardEntityImpl implements IBoardEntity {
@@ -23,7 +23,6 @@ public class BoardEntityImpl implements IBoardEntity {
 	
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
-		System.out.printf("voImpl = %d \n", bno);
 		return session.selectOne(namespace+".read", bno);
 	}
 	
@@ -42,4 +41,22 @@ public class BoardEntityImpl implements IBoardEntity {
 		return session.selectList(namespace+".listAll");
 	}
 	
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+		if (page <= 0) {
+			page = 1;
+		}
+		page = (page - 1) * 10;
+		return session.selectList(namespace+".listPage", page);
+	}
+	
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(namespace+".listCriteria", cri);
+	}
+	
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		return session.selectOne(namespace+".countPaging", cri);
+	}
 }

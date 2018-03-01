@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.com.entity.IBoardEntity;
 import org.com.vo.BoardVO;
+import org.com.vo.Criteria;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,5 +38,21 @@ public class BoardServiceImpl implements IBoardService{
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return ibe.listAll();
+	}
+	
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+		return ibe.listPage(page);
+	}
+	
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return ibe.listCriteria(cri);
+	}
+	
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		return ibe.countPaging(cri);
 	}
 }
