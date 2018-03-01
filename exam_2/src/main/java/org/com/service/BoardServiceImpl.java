@@ -12,30 +12,30 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements IBoardService{
 
 	@Inject
-	private IBoardEntity iEntity;
+	private IBoardEntity ibe;
 	
 	@Override
 	public void regist(BoardVO vo) throws Exception {
-		iEntity.create(vo);
+		ibe.create(vo);
 	}
 	
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
-		return iEntity.read(bno);
+		return ibe.read(bno);
 	}
 	
 	@Override
 	public void modify(BoardVO vo) throws Exception {
-		iEntity.update(vo);
+		ibe.update(vo);
 	}
 	
 	@Override
 	public void remove(Integer bno) throws Exception {
-		iEntity.delete(bno);
+		ibe.delete(bno);
 	}
 	
 	@Override
 	public List<BoardVO> listAll() throws Exception {
-		return iEntity.listAll();
+		return ibe.listAll();
 	}
 }

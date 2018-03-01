@@ -3,6 +3,7 @@ package org.com.entity;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.com.vo.BoardVO;
@@ -22,6 +23,7 @@ public class BoardEntityImpl implements IBoardEntity {
 	
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
+		System.out.printf("voImpl = %d \n", bno);
 		return session.selectOne(namespace+".read", bno);
 	}
 	
@@ -37,6 +39,7 @@ public class BoardEntityImpl implements IBoardEntity {
 	
 	@Override
 	public List<BoardVO> listAll() throws Exception {
-		return session.selectList(namespace+"/listAll");
+		return session.selectList(namespace+".listAll");
 	}
+	
 }

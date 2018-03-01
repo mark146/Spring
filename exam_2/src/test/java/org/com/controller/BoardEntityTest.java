@@ -16,36 +16,37 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class BoardEntityTest {
 
 	@Inject
-	private IBoardEntity iEntity;
+	private IBoardEntity ibe;
 
 	private static Logger logger = LoggerFactory.getLogger(BoardEntityTest.class);
-	
+
 	@Test
 	public void testCreate() throws Exception {
 		BoardVO vo = new BoardVO();
 		vo.setTitle("새로운 글을 넣습니다.");
 		vo.setContent("새로운 글을 넣습니다.");
 		vo.setWriter("user00");
-		iEntity.create(vo);
+		ibe.create(vo);
 	}
-	
+
 	@Test
 	public void testRead() throws Exception {
-		logger.info(iEntity.read(1).toString());
+		ibe.read(1);
+		//logger.info(ibe.read(1).toString());
 	}
-	
+
 	@Test
 	public void testUpdate() throws Exception {
 		BoardVO vo = new BoardVO();
 		vo.setBno(1);
 		vo.setTitle("수정된 글입니다.");
 		vo.setContent("수정 테스트");
-		iEntity.update(vo);
+		ibe.update(vo);
 	}
-	
+
 	@Test
 	public void testDelete() throws Exception {
-		iEntity.delete(1);
+		ibe.delete(1);
 	}
-	
+
 }

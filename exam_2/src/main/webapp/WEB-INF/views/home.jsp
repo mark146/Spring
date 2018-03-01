@@ -20,3 +20,4 @@
  </div>		<!-- /.row -->
 </section><!--  /.content -->
 
+<%@include file="include/footer.jsp" %>
