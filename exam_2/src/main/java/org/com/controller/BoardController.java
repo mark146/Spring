@@ -24,12 +24,11 @@ public class BoardController {
 	@Inject
 	private IBoardService ibs;
 
-
+	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public void registerGET(BoardVO vo, Model model) throws Exception {
 		logger.info("register get..");//항상 사용자가 직접 브라우저에서 접근이 가능할 때 사용
 	}
-
 
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String registPOST(BoardVO vo, RedirectAttributes rttr) throws Exception {
@@ -39,61 +38,65 @@ public class BoardController {
 		ibs.regist(vo);
 
 		rttr.addFlashAttribute("msg","SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
-
-
-	@RequestMapping(value="/listAll", method=RequestMethod.GET)
-	public void listAll(Criteria cri, Model model) throws Exception {
+	
+	
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(@ModelAttribute("cri")Criteria cri,
+			Model model) throws Exception {
 		logger.info(cri.toString());
+
 		model.addAttribute("list", ibs.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(ibs.listCountCriteria(cri));
+
+		model.addAttribute("pageMaker", pageMaker);
 	}
 
-
-	@RequestMapping(value="/read", method=RequestMethod.GET)
-	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+		
+	@RequestMapping(value="/readPage", method=RequestMethod.GET)
+	public void read(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") Criteria cri, 
+			Model model) throws Exception {
 		logger.info("show read..");
 		model.addAttribute(ibs.read(bno));
 	}
 
 
-	@RequestMapping(value="/remove", method=RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+	@RequestMapping(value="/removePage", method=RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno, 
+			Criteria cri,
+			RedirectAttributes rttr) throws Exception {
 		logger.info("show remove..");
 
 		ibs.remove(bno);
 
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addFlashAttribute("msg","SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
 
 
-	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public void modifyGET(int bno, Model model) throws Exception {
+	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
+	public void modifyGET(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") Criteria cri, 
+			Model model) throws Exception {
 		logger.info("show modifyGET..");
 		model.addAttribute(ibs.read(bno));
 	}
 
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modifyPOST(BoardVO vo, RedirectAttributes rttr) throws Exception {
+	
+	@RequestMapping(value="/modifyPage", method=RequestMethod.POST)
+	public String modifyPOST(BoardVO vo,Criteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("show modifyPOST..");
 
 		ibs.modify(vo);
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
-
-
-	@RequestMapping(value="/listPage", method=RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception {
-		logger.info(cri.toString());
-		model.addAttribute("list", ibs.listCriteria(cri));
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		//pageMaker.setTotalCount(131);
-		pageMaker.setTotalCount(ibs.listCountCriteria(cri));
-		
-		model.addAttribute("pageMaker", pageMaker);
-	}
-
 }
