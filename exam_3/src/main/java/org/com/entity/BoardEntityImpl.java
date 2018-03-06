@@ -35,12 +35,7 @@ public class BoardEntityImpl implements IBoardEntity {
 	public void delete(Integer bno) throws Exception {
 		session.delete(namespace+".delete", bno);
 	}
-	
-	@Override
-	public List<BoardVO> listAll() throws Exception {
-		return session.selectList(namespace+".listAll");
-	}
-	
+		
 	@Override
 	public List<BoardVO> listPage(int page) throws Exception {
 		if (page <= 0) {
@@ -58,5 +53,15 @@ public class BoardEntityImpl implements IBoardEntity {
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
 		return session.selectOne(namespace+".countPaging", cri);
+	}
+	
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace+".listSearch", cri);
+	}
+	
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace+".listSearchCount", cri);	
 	}
 }
