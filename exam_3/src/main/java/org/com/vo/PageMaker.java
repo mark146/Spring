@@ -58,25 +58,16 @@ public class PageMaker {
 	}
 
 	public String makeSearch(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+		UriComponents uriComponents = 
+				UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum())
-				.queryParam("searchType", ((SearchCriteria) cri).getKeyword())
-				.queryParam("keyword", encoding(((SearchCriteria) cri).getKeyword())).build();
+				.queryParam("searchType", ((SearchCriteria)cri).getSearchType())
+				.queryParam("keyword", ((SearchCriteria) cri).getKeyword())
+				.build();
 		return uriComponents.toUriString();
 	}
-	
-	private String encoding(String keyword) {
-		if (keyword == null || keyword.trim().length() == 0) { return ""; }
 		
-		try {
-			return URLEncoder.encode(keyword, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			return "";
-		}
-		
-	}
-	
 	public int getStartPage() {
 		return startPage;
 	}
@@ -124,5 +115,4 @@ public class PageMaker {
 	public Criteria getCri() {
 		return cri;
 	}
-
 }

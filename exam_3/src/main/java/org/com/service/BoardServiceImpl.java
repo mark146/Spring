@@ -37,12 +37,6 @@ public class BoardServiceImpl implements IBoardService{
 	}
 
 	@Override
-	public List<BoardVO> listPage(int page) throws Exception {
-		return ibe.listPage(page);
-	}
-
-
-	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 		return ibe.listCriteria(cri);
 	}
