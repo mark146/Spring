@@ -10,7 +10,7 @@ insert into tbl_board (title, content, writer)
 values(#{title}, #{content}, #{writer})
 </insert>
 
-<select id="read" resultType="org.com.vo.BoardVO">
+<select id="read" resultType="BoardVO">
 select bno, title, content, writer, regdate, viewcnt 
 from 
  tbl_board 
@@ -25,30 +25,6 @@ where bno = #{bno}
 <delete id="delete">
 delete from tbl_board where bno = #{bno}
 </delete>
-
-<select id="listAll" resultType="org.com.vo.BoardVO">
-<![CDATA[
-select 
-	bno, title, content, writer, regdate, viewcnt 
-from 
-	tbl_board 
-where 
-	bno > 0 
-order by bno desc, regdate desc
-]]>
-</select>
-
-<select id="listPage" resultType="BoardVO">
-<![CDATA[
-select 
-	bno, title, content, writer, regdate, viewcnt 
-from 
-	tbl_board 
-where bno > 0 
-order by bno desc, regdate desc
-limit #{page}, 10
-]]>
-</select>
 
 <select id="listCriteria" resultType="BoardVO">
 <![CDATA[
@@ -72,6 +48,30 @@ where
 	bno > 0 
 ]]>
 </select>
+
+<select id="listSearch" resultType="BoardVO">
+<![CDATA[
+select *
+from tbl_board
+where bno > 0
+]]>
+	<include refid="search"></include>
+<![CDATA[
+ order by bno desc
+ limit #{pageStart}, #{perPageNum}
+]]>
+</select>
+
+
+<select id="listSearchCount" resultType="int">
+<![CDATA[
+select count(bno)
+from tbl_board
+where bno > 0
+]]>
+	<include refid="search"></include>
+</select>
+
 
 <sql id="search">
 	<if test="searchType != null">
@@ -103,32 +103,4 @@ where
 		</if>
 	</if>
 </sql>
-
-<select id="listSearch" resultType="BoardVO">
-<![CDATA[
-select *
-from tbl_board
-where bno > 0
-]]>
-
-	<include refid="search"></include>
-
-<![CDATA[
- order by bno desc
- limit #{pageStart}, #{perPageNum}
-]]>
-</select>
-
-
-<select id="listSearchCount" resultType="int">
-<![CDATA[
-select count(bno)
-from tbl_board
-where bno > 0
-]]>
-
-	<include refid="search"></include>
-
-</select>
-
 </mapper>
