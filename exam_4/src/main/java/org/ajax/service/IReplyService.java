@@ -1,8 +1,7 @@
 package org.ajax.service;
 
-import java.util.List;
-
-import org.ajax.vo.ReplyVO;
+import java.util.*;
+import org.ajax.vo.*;
 
 public interface IReplyService {
 
@@ -13,4 +12,8 @@ public interface IReplyService {
 	public void modifyReply(ReplyVO vo) throws Exception;
 	
 	public void removeReply(Integer rno) throws Exception;
+	
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri) throws Exception;
+	
+	public int count(Integer bno) throws Exception;
 }

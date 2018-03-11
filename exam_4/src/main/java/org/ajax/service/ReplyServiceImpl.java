@@ -32,4 +32,14 @@ public class ReplyServiceImpl implements IReplyService{
 	public void removeReply(Integer rno) throws Exception {
 		ire.delete(rno);
 	}
+	
+	@Override
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri) throws Exception {
+		return ire.listPage(bno, cri);
+	}
+	
+	@Override
+	public int count(Integer bno) throws Exception {
+		return ire.count(bno);
+	}
 }

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.ajax.mapper.ReplyMapper">
 
-<select id="list">
+<select id="list" resultType="ReplyVO">
 select * from
 tbl_reply
 where bno = #{bno}
@@ -26,4 +26,15 @@ where rno = #{rno}
 delete from tbl_reply where rno = #{rno}
 </delete>
 
+<select id="listPage" resultType="ReplyVO">
+select * from
+tbl_reply
+where bno = #{bno}
+order by rno desc
+limit #{cri.pageStart}, #{cri.perPageNum}
+</select>
+
+<select id="count" resultType="int">
+ select count(bno) from tbl_reply where bno = #{bno}
+</select>
 </mapper>

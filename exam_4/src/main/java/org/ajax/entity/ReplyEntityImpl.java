@@ -34,5 +34,18 @@ public class ReplyEntityImpl implements IReplyEntity {
 		session.delete(namespace+".delete", rno);
 	}
 	
+	@Override
+	public List<ReplyVO> listPage(Integer bno, Criteria cri) {
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("bno", bno);
+		paramMap.put("cri", cri);
+		
+		return session.selectList(namespace+".listPage", paramMap);
+	}
 	
+	@Override
+	public int count(Integer bno) throws Exception {
+		return session.selectOne(namespace+".count", bno);
+	}
  }
