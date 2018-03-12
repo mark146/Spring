@@ -25,7 +25,22 @@
 	<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
 	<script>
-		var bno = 1;
+	var bno = 3;
+		function getAllList() {
+			
+			$.getJSON("/replies/all/" + bno, function(data) {
+				var str = "";
+				console.log(data.length);
+
+				$(data).each(function() {
+					str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+					+ this.rno + ":" + this.replytext
+					+ "<button>MOD</button></li>";
+				});
+
+				$("#replies").html(str);
+			});
+		}
 		
 		$("#replyAddBtn").on("click", function() {
 			
@@ -34,42 +49,35 @@
 			
 			$.ajax({
 				type: 'post',
-				uri: 'replies',
+				url: '/replies',
 				headers: {
 					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
+					"X-HTTP-Method-Override" : "POST"},
 				dataType: 'text',
 				data: JSON.stringify({
 					bno : bno,
-					replyer :replyer,
+					replyer : replyer,
 					replytext : replytext
-				}),
+					}),
 				success : function(result) {
 					if (result == 'SUCCESS') {
 						alert("등록 되었습니다.");
+						getAllList();
 					}
 				}
 				
 			});
 		});
 		
+		$("#replies").on("click", ".replyLi button", function() {
+			var reply = $(this).parent();
+			
+			var rno = reply.attr("data-rno");
+			var replytext = reply.text();
+			
+			alter(rno+" : "+replytext);
+		});
 		
-		function getAllList() {
-
-			$.getJSON("/replies/all/" + bno, function(data) {
-				var str = "";
-				console.log(data.length);
-
-				$(data).each(function() {
-					str += "<li data-rno='"+this.rno+"' class='replyLi'>"
-					+ this.rno + ":" + this.replytext
-					+ "</li>";
-				});
-
-				$("#replies").html(str);
-			});
-		}
 	</script>
 </body>
 </html>
