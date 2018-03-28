@@ -22,6 +22,7 @@ public class BoardServiceImpl implements IBoardService{
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
+		ibe.updateViewCnt(bno);
 		return ibe.read(bno);
 	}
 

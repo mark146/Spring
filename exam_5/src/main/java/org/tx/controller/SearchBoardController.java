@@ -38,6 +38,7 @@ public class SearchBoardController {
 	@RequestMapping(value ="/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno,
 			@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	
 		model.addAttribute(ibs.read(bno));
 	}
 	

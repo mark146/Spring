@@ -31,7 +31,6 @@
 					<button type="button" class="btn btn-primary" id="replyAddBtn">ADD
 						REPLY</button>
 				</div>
-			</div>
 				<!-- /.box-footer -->
 			</div>
 			<!-- /.box -->
@@ -42,10 +41,9 @@
 				<li class="time-label" id="repliesDiv"><span class="bg-green">
 						Replies List <small id="replycntSmall">[${boardVO.replycnt }]</small> </span></li>
 			</ul>
+			
 			<div class='text-center'>
-				<ul id="pagination" class="pagination pagination-sm no-margin ">
-
-				</ul>
+				<ul id="pagination" class="pagination pagination-sm no-margin "></ul>
 			</div>
 
 		</div>
@@ -130,8 +128,8 @@ function getPage(pageInfo) {
 		printData(data.list, $("#repliesDiv") ,$("#template"));
 		printPaging(data.pageMaker, $(".pagination"));
 		
-		$("#modifyModal").modal('hide');
-		$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
+//		$("#modifyModal").modal('hide');
+//		$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
 	});
 }
 
