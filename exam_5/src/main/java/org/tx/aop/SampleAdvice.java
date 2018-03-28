@@ -3,6 +3,7 @@ package org.tx.aop;
 import java.util.*;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -17,10 +18,25 @@ public class SampleAdvice {
 
 	private static final Logger logger = LoggerFactory.getLogger(SampleAdvice.class);
 	
-	@Before("execution(* org.tx.service.MessageService*.*(..))")
-	public void startLog() {
-		logger.info("-----------------------");
-		logger.info("-----------------------");
-		System.out.println("SampleAdvice--");
-	}
+//	@Before("execution(* org.tx.service.MessageService*.*(..))")
+//	public void startLog(JoinPoint jp) {
+//		logger.info("SampleAdvice-----------------------");
+//		logger.info("SampleAdvice-----------------------");
+//		logger.info(Arrays.toString(jp.getArgs()));
+//	}
+//	
+//	@Around("execution(* org.tx.service.MessageService*.*(..))")
+//	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable {
+//		
+//		long startTime = System.currentTimeMillis();
+//		logger.info(Arrays.toString(pjp.getArgs()));
+//		
+//		Object result = pjp.proceed();
+//		
+//		long endTime = System.currentTimeMillis();
+//		logger.info(pjp.getSignature().getName()+" : "+(endTime - startTime));
+//		logger.info("=======================================================");
+//
+//		return result;
+//	}
 }

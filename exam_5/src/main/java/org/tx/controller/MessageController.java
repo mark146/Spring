@@ -15,14 +15,11 @@ import org.tx.vo.*;
 @RequestMapping("/messages")
 public class MessageController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
-	
 	@Inject
 	private IMessageService ims;
 	
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public ResponseEntity<String> addMessage(@RequestBody MessageVO vo) {
-		logger.info("messages---------------");
 		ResponseEntity<String> entity = null;
 		try {
 			ims.addMessage(vo);

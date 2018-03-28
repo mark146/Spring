@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.tx.entity.*;
 import org.tx.vo.*;
 
+
 @Service
 public class MessageServiceImpl implements IMessageService {
 
@@ -15,9 +16,9 @@ public class MessageServiceImpl implements IMessageService {
 	@Inject
 	private IPointEntity ipe;
 	
+	@Transactional
 	@Override
 	public void addMessage(MessageVO vo) throws Exception {
-		System.out.println("addMessage service");
 		ime.create(vo);
 		ipe.updatePoint(vo.getSender(), 10);
 	}
