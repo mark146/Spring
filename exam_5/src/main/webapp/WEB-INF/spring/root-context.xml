@@ -38,6 +38,7 @@
 	<tx:annotation-driven/>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
 	<context:component-scan base-package="org.tx.entity" />
 	<context:component-scan base-package="org.tx.service" />
 	<context:component-scan base-package="org.tx.aop" />

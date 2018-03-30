@@ -128,8 +128,8 @@ function getPage(pageInfo) {
 		printData(data.list, $("#repliesDiv") ,$("#template"));
 		printPaging(data.pageMaker, $(".pagination"));
 		
-//		$("#modifyModal").modal('hide');
-//		$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
+		$("#modifyModal").modal('hide');
+		$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
 	});
 }
 

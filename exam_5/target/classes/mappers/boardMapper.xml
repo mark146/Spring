@@ -37,7 +37,7 @@ select
 from 
 	tbl_board 
 where bno > 0 
-order by bno desc, regdate desc
+	order by bno desc, regdate desc
 limit #{pageStart}, #{perPageNum} 
 ]]>
 </select>
@@ -59,8 +59,7 @@ where
 
 <select id="listSearch" resultType="BoardVO">
 <![CDATA[
-select *
-from tbl_board
+select * from tbl_board
 where bno > 0
 ]]>
 	<include refid="search"></include>

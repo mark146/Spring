@@ -5,7 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.tx.mapper.PointMapper">
 	<update id="updatePoint">
-	 update tbl_user set upoint = upoint + #{point} where
-	 uuuid = #{uid}
+	 update tbl_user 
+	 set upoint = upoint + #{point} 
+	 where uid = #{uid}
 	</update>
 </mapper>
