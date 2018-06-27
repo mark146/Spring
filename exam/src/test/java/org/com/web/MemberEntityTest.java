@@ -15,7 +15,7 @@ import org.com.persistence.*;
 public class MemberEntityTest {
 	
 	@Inject
-	private IMemberEntity iEntity;
+	private MemberEntity iEntity;
 	
 	@Test
 	public void testTime()throws Exception {

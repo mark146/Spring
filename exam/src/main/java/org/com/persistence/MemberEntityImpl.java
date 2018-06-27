@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.com.domain.MemberVO;
 
 @Repository
-public class MemberEntityImpl implements IMemberEntity {
+public class MemberEntityImpl implements MemberEntity {
 	
 	@Inject
 	private SqlSession sqlSession;
