@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Register</title>
 </head>
+<%@ include file="../include/header.jsp" %>
 <script>
  var result = '${msg}';
  
@@ -16,9 +17,6 @@
  }
 </script>
 <body>
-
-<%@ include file="../include/header.jsp" %>
-
 <table class="table table-bordered">
  <tr>
 	<th style="width: 10px">BNO</th>

@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Register</title>
 </head>
-<body>
 <%@ include file="../include/header.jsp" %>
+<body>
 
  <form role="form" method="post">
   <div class="box-body">

@@ -2,6 +2,7 @@ package org.com.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,7 @@ public class CommonExceptionAdvice {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView errorModelAndView(Exception e) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("error_common");
+		modelAndView.setViewName("/error_common");
 		modelAndView.addObject("exception", e);
 		return modelAndView;
 	}
