@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  value(#{title},#{content},#{writer})
 </insert>
 
-<select id="read" resultType="org.com.vo.BoardVO">
+<select id="read" resultType="BoardVO">
  select 
   bno, title, content, writer, regdate, viewcnt
  from
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  delete from tbl_board where bno = #{bno}
 </delete>
 
-<select id="listAll" resultType="org.com.vo.BoardVO">
+<select id="listAll" resultType="BoardVO">
 <![CDATA[
 select
  bno, title, content, writer, regdate, viewcnt
@@ -35,6 +35,30 @@ from
  tbl_board
 where bno > 0
 order by bno desc, regdate desc
+]]>
+</select>
+
+<select id="listPage" resultType="BoardVO">
+<![CDATA[
+select
+ bno, title, content, writer, regdate, viewcnt
+from
+ tbl_board
+where bno > 0
+order by bno desc, regdate desc
+limit #{page}, 10
+]]>
+</select>
+
+<select id="listCriteria" resultType="BoardVO">
+<![CDATA[
+select
+ bno, title, content, writer, regdate, viewcnt
+from
+ tbl_board
+where bno > 0
+order by bno desc, regdate desc
+limit #{pageStart}, #{perPageNum}
 ]]>
 </select>
 

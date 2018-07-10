@@ -2,7 +2,7 @@ package org.com.service;
 
 import java.util.List;
 
-import org.com.vo.BoardVO;
+import org.com.vo.*;
 
 public interface BoardService {
 
@@ -15,4 +15,6 @@ public interface BoardService {
 	public void remove(Integer bno) throws Exception;
 	
 	public List<BoardVO> listAll() throws Exception;
+
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 }

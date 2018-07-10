@@ -2,12 +2,12 @@ package org.com.vo;
 
 public class Criteria {
 
-	private int page;//현재 조회하는 페이지의 번호
-	private int perPageNum;//한 페이지당 출력하는 데이터의 개수
+	private int page;
+	private int perPageNum;
 	
 	public Criteria() {
 		this.page = 1;
-		this.perPageNum = 10;
+		this.perPageNum = 3;
 	}
 	
 	public void setPage(int page) {
@@ -32,11 +32,8 @@ public class Criteria {
 		return page;
 	}
 	
+	//method for MyBatis SQL Mapper -
 	public int getPageStart() {
-		return (this.page -1) * perPageNum;//시작번호 = (페이지 번호 -1)*페이지 당 보여지는 개수
-	}
-	
-	public int getPerPageNum() {
 		return this.perPageNum;
 	}
 	

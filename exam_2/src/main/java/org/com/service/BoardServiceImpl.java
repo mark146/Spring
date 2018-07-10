@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.com.entity.BoardEntity;
-import org.com.vo.BoardVO;
+import org.com.vo.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,5 +37,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return entity.listAll();
+	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return entity.listCriteria(cri);
 	}
 }

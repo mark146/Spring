@@ -1,8 +1,7 @@
 package org.com.entity;
 
 import java.util.List;
-
-import org.com.vo.BoardVO;
+import org.com.vo.*;
 
 public interface BoardEntity {
 
@@ -15,4 +14,8 @@ public interface BoardEntity {
 	public void delete(Integer bno) throws Exception;
 	
 	public List<BoardVO> listAll() throws Exception;
+
+	public List<BoardVO> listPage(int page) throws Exception;
+	
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 }

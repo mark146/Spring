@@ -1,9 +1,12 @@
 package org.com.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.com.entity.BoardEntity;
 import org.com.vo.BoardVO;
+import org.com.vo.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -42,4 +45,27 @@ public class BoardEntityTest {
 		entity.delete(1);
 	}
 	
+	@Test
+	public void testListPage() throws Exception {
+		int page = 2;
+		
+		List<BoardVO> list = entity.listPage(page);
+		
+		for (BoardVO vo : list) {
+			logger.info(vo.getBno() + ":" + vo.getTitle());
+		}
+	}
+	
+	@Test
+	public void testListCriteria() throws Exception {
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		cri.setPerPageNum(10);
+		
+		List<BoardVO> list = entity.listCriteria(cri);
+		
+		for (BoardVO vo : list) {
+			logger.info(vo.getBno() + ":" + vo.getTitle());
+		}
+	}
 }
