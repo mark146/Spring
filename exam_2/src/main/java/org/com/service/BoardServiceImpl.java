@@ -35,17 +35,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> listAll() throws Exception {
-		return entity.listAll();
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+		return entity.listSearch(cri);
 	}
 
 	@Override
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return entity.listCriteria(cri);
-	}
-
-	@Override
-	public int listCountCriteria(Criteria cri) throws Exception {
-		return entity.countPaging(cri);
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return entity.listSearchCount(cri);
 	}
 }

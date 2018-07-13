@@ -1,12 +1,9 @@
 package org.com.entity;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
-import org.com.vo.BoardVO;
-import org.com.vo.Criteria;
+import org.com.vo.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -38,29 +35,12 @@ public class BoardEntityImpl implements BoardEntity {
 	}
 
 	@Override
-	public List<BoardVO> listAll() throws Exception {
-		return  session.selectList(namespace + ".listAll");
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace + ".listSearch", cri);
 	}
 
 	@Override
-	public List<BoardVO> listPage(int page) throws Exception {
-
-		if (page <= 0) {
-			page = 1;
-		}
-		
-		page = (page -1) * 10;
-		
-		return session.selectList(namespace+".listPage", page);
-	}
-
-	@Override
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return session.selectList(namespace + ".listCriteria", cri);
-	}
-	
-	@Override
-	public int countPaging(Criteria cri) throws Exception {
-		return session.selectOne(namespace+".countPaging", cri);
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
 }
