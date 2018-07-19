@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.com.entity.ReplyEntity;
+import org.com.vo.Criteria;
 import org.com.vo.ReplyVO;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,15 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public void removeReply(Integer rno) throws Exception {
 		entity.delete(rno);
+	}
+
+	@Override
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri) throws Exception {
+		return entity.listPage(bno, cri);
+	}
+
+	@Override
+	public int count(Integer bno) throws Exception {
+		return entity.count(bno);
 	}
 }

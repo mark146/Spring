@@ -13,4 +13,7 @@ public interface ReplyEntity {
 	
 	public void delete(Integer rno) throws Exception;
 	
+	public List<ReplyVO> listPage(Integer bno, Criteria cri) throws Exception;
+	
+	public int count(Integer bno) throws Exception;
 }

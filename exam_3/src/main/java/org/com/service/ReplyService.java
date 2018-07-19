@@ -1,8 +1,7 @@
 package org.com.service;
 
 import java.util.List;
-
-import org.com.vo.ReplyVO;
+import org.com.vo.*;
 
 public interface ReplyService {
 
@@ -14,4 +13,7 @@ public interface ReplyService {
 	
 	public void removeReply(Integer rno) throws Exception;
 	
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri) throws Exception;
+	
+	public int count(Integer bno) throws Exception;
 }
