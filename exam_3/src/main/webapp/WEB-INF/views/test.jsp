@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <!-- Bootstrap 3.3.4 -->
-    <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <style>
 #modDiv {

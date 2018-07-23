@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>ex00</title>
+</head>
+<!-- jQuery 2.1.4 -->
+<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script type="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+
+<script>
+	var source="<h1><p>{{name}}</p> <p>{{userid}}</p> <p>{{addr}}</p></h1>";
+	var template = Handlebars.compile(source);
+	var data = {name:"홍길동",userid:"user00", addr:"조선 한양"};
+	
+	$("#displayDiv").html(template(data));
+</script>
+<body>
+
+<div id="displayDiv">
+
+</div>
+
+</body>
+</html>

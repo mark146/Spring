@@ -4,56 +4,43 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.com.entity.IBoardEntity;
-import org.com.vo.BoardVO;
-import org.com.vo.Criteria;
-import org.com.vo.SearchCriteria;
+import org.com.entity.BoardEntity;
+import org.com.vo.*;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BoardServiceImpl implements IBoardService{
+public class BoardServiceImpl implements BoardService {
 
 	@Inject
-	private IBoardEntity ibe;
-
+	private BoardEntity entity;
+	
 	@Override
 	public void regist(BoardVO vo) throws Exception {
-		ibe.create(vo);
+		entity.create(vo);
 	}
 
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
-		return ibe.read(bno);
+		return entity.read(bno);
 	}
 
 	@Override
 	public void modify(BoardVO vo) throws Exception {
-		ibe.update(vo);
+		entity.update(vo);
 	}
 
 	@Override
 	public void remove(Integer bno) throws Exception {
-		ibe.delete(bno);
-	}
-
-	@Override
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-		return ibe.listCriteria(cri);
-	}
-
-	@Override
-	public int listCountCriteria(Criteria cri) throws Exception {
-		return ibe.countPaging(cri);
+		entity.delete(bno);
 	}
 
 	@Override
 	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
-		return ibe.listSearch(cri);
+		return entity.listSearch(cri);
 	}
 
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
-		return ibe.listSearchCount(cri);
+		return entity.listSearchCount(cri);
 	}
-
 }

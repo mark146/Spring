@@ -69,6 +69,7 @@ public class ReplyController {
 			@PathVariable("rno") Integer rno) {
 		ResponseEntity<String> entity = null;
 		try {
+			System.out.println("rno = " + rno);
 			service.removeReply(rno);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
