@@ -6,6 +6,7 @@ import org.com.entity.MessageDAO;
 import org.com.entity.PointDAO;
 import org.com.vo.MessageVO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -16,6 +17,7 @@ public class MessageServiceImpl implements MessageService {
 	@Inject
 	private PointDAO pointDAO;
 	
+	@Transactional
 	@Override
 	public void addMessage(MessageVO vo) throws Exception {
 		messageDAO.create(vo);
@@ -28,5 +30,4 @@ public class MessageServiceImpl implements MessageService {
 		pointDAO.updatePoint(uid, 5);
 		return messageDAO.readMessage(mid);
 	}
-
 }

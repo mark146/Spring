@@ -35,4 +35,9 @@
 	<context:component-scan base-package="org.com.aop"></context:component-scan>
 	<aop:config>
 	</aop:config>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 <property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven />
 </beans>
