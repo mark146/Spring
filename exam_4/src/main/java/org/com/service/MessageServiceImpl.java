@@ -2,8 +2,8 @@ package org.com.service;
 
 import javax.inject.Inject;
 
-import org.com.entity.MessageDAO;
-import org.com.entity.PointDAO;
+import org.com.entity.MessageEntity;
+import org.com.entity.PointEntity;
 import org.com.vo.MessageVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,22 +12,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class MessageServiceImpl implements MessageService {
 
 	@Inject
-	private MessageDAO messageDAO;
+	private MessageEntity messageEntity;
 	
 	@Inject
-	private PointDAO pointDAO;
+	private PointEntity pointEntity;
 	
 	@Transactional
 	@Override
 	public void addMessage(MessageVO vo) throws Exception {
-		messageDAO.create(vo);
-		pointDAO.updatePoint(vo.getSender(), 10);
+		messageEntity.create(vo);
+		pointEntity.updatePoint(vo.getSender(), 10);
 	}
 
 	@Override
 	public MessageVO readMessage(String uid, Integer mid) throws Exception {
-		messageDAO.updateState(mid);
-		pointDAO.updatePoint(uid, 5);
-		return messageDAO.readMessage(mid);
+		messageEntity.updateState(mid);
+		pointEntity.updatePoint(uid, 5);
+		return messageEntity.readMessage(mid);
 	}
 }
