@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.com.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -62,6 +63,7 @@ public class UploadController {
 		logger.info("size: " + file.getSize());
 		logger.info("contentType: " + file.getContentType());
 	
-		return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
+		return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, 
+				file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
 	}
 }
