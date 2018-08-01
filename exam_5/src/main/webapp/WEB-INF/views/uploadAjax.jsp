@@ -44,21 +44,34 @@ small {
 		 success: function(data) {
 			 var str = "";
 			 
-			 console.log(data);
-			 console.log(checkImageType(data));
-			 
 			 if(checkImageType(data)) {
-				 str = "<div>" +
-				 "<div><a href='displayFile?fileName="+ getImageLink(data) +"'>" +
-				 "<img src='displayFile?fileName=" + data + "'/>" 
-						 + getImageLink(data) + "</a></div>";
+				 str = "<div><a href='displayFile?fileName="+ getImageLink(data) +"'>" +
+				 "<img src='displayFile?fileName="+ data +"'/>"
+						 +"</a><small data-src="+ data +">X</small></div>";
 			 } else {
 				 str = "<div><a href='displayFile?fileName="+data+"'>"
-				 + getOriginalName(data) +"</a></div>";
+				 + getOriginalName(data) +"</a>"
+				 +"<small data-src="+ data +">X</small></div></div>";
 			 }
 			 
 			$(".uploadedList").append(str); 
 		 }
+	  });
+  });
+  
+  $(".uploadedList").on("click", "small", function(event) {
+	  var that = $(this);
+	  
+	  $.ajax({
+		  url: "deleteFile",
+		  type: "POST",
+		  data: {fileName:$(this).attr("data-src")},
+		  dataType: "text",
+		  success: function(result) {
+			  if(result == 'deleted') {
+				  that.parent("div").remove();
+			  }
+		  }
 	  });
   });
   
