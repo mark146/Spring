@@ -16,6 +16,7 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardEntity entity;
 	
+	@Transactional
 	@Override
 	public void regist(BoardVO vo) throws Exception {
 		entity.create(vo);
@@ -54,5 +55,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return entity.listSearchCount(cri);
+	}
+
+	@Override
+	public List<String> getAttach(Integer bno) throws Exception {
+		return entity.getAttach(bno);
 	}
 }

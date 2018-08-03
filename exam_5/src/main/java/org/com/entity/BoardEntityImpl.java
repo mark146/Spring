@@ -65,4 +65,9 @@ public class BoardEntityImpl implements BoardEntity {
 	public void addAttach(String fullName) throws Exception {
 		session.insert(namespace+".addAttach", fullName);
 	}
+
+	@Override
+	public List<String> getAttach(Integer bno) throws Exception {
+		return session.selectList(namespace+".getAttach", bno);
+	}
 }

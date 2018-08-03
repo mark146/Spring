@@ -27,7 +27,9 @@
  </div>
 </li>
 </script>
+<script type="text/javascript" src="/resources/js/upload.js"></script>
 <script>
+$(document).ready(function() {
 var template = Handlebars.compile($("#template").html());
 
 $(".fileDrop").on("dragenter dragover", function(event){
@@ -71,8 +73,8 @@ $("#registerForm").submit(function(event){
 	that.append(str);
 	that.get(0).submit();
 });
+});
 </script>
-<script type="text/javascript" src="/resources/js/upload.js"></script>
 <body>
 
  <form role="form" method="post">
@@ -103,7 +105,8 @@ $("#registerForm").submit(function(event){
     <hr>
    </div>
    
-   <ul class="mailbox-attachments clearfix uploadedList"></ul>
+   <ul class="mailbox-attachments clearfix uploadedList">
+   </ul>
    
    <button type="submit" class="btn btn-primary">Submit</button>
   </div>

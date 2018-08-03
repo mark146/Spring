@@ -1,5 +1,7 @@
 package org.com.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.com.service.BoardService;
@@ -9,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -83,5 +87,11 @@ public class SearchBoardController {
 		service.regist(vo);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/sboard/list";
+	}
+	
+	@RequestMapping("/getAttach/{bno}")
+	@ResponseBody
+	public List<String> getAttach(@PathVariable("bno")Integer bno) throws Exception {
+		return service.getAttach(bno);
 	}
 }
