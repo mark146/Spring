@@ -53,8 +53,9 @@ $(".fileDrop").on("drop", function(event){
 		type: "POST",
 		success: function(data) {
 			var fileInfo = getFileInfo(data);
-			var html = template(fileInfo);
 			
+			var html = template(fileInfo);
+			alert("html = "+html);
 			$(".uploadedList").append(html);
 		}
 	});
@@ -69,15 +70,13 @@ $("#registerForm").submit(function(event){
 	$(".uploadedList .delbtn").each(function(index) {
 		str += "<input type='hidden' name='files["+ index +"]' value='"+ $(this).attr("href") +"'>";
 	});
-	
 	that.append(str);
 	that.get(0).submit();
 });
 });
 </script>
 <body>
-
- <form role="form" method="post">
+ <form id='registerForm' role="form" method="post">
   <div class="box-body">
    <div class="form-group">
     <label for="exampleInputEmail1">Title</label>

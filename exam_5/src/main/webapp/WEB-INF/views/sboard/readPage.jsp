@@ -33,9 +33,8 @@
   <span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
   <div class="mailbox-attachment-info">
 	<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-	</span>
   </div>
-</li>                
+</li>        
 </script> 
 <script>
 $(document).ready(function(){
@@ -72,7 +71,6 @@ function getPage(pageInfo) {
 
 $.getJSON("/sboard/getAttach/"+bno, function(list) {
 	$(list).each(function(){
-		alert("test");
 		var fileInfo = getFileInfo(this);
 		var html = template(fileInfo);
 		$(".uploadedList").append(html);
