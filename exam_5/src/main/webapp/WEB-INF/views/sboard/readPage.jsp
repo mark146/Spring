@@ -101,6 +101,29 @@ $("#popup_img").on("click", function(){
 	
 });	
 
+$("#removeBtn").on("click", function(){
+	var replyCnt = $("replycntSall").html().replace(/[^0-9]/g,"");
+	
+	if(replyCnt > 0) {
+		alert("댓글이 달린 게시물을 삭제할 수 없습니다.");
+		return;
+	}
+	
+	var arr=[];
+	$(".uploadedList li").each(function(index) {
+		arr.push($(this).attr("data-src"));
+	});
+	
+	if(arr.length > 0) {
+		$.post("/deleteAllFiles", {files:arr}, function(){
+			
+		});
+	}
+	
+	formObj.attr("action", "/sboard/removePage");
+	formObj.submit();
+});
+
 var printPaging = function(pageMaker, target) {
 	
 	var str = "";
@@ -237,27 +260,28 @@ $(".btn-primary").on("click", function(){
 
 });
 </script>
-<!-- Main content -->
-    <style type="text/css">
-    .popup {position: absolute;}
-    .back { background-color: gray; opacity:0.5; width: 100%; height: 300%; overflow:hidden;  z-index:1101;}
-    .front { 
-       z-index:1110; opacity:1; boarder:1px; margin: auto; 
-      }
-     .show{
-       position:relative;
-       max-width: 1200px; 
-       max-height: 800px; 
-       overflow: auto;       
-     } 
-  	
-    </style>
 
-    <div class='popup back' style="display:none;"></div>
-    <div id="popup_front" class='popup front' style="display:none;">
-     <img id="popup_img">
-    </div>
+<!-- Main content -->
+<style type="text/css">
+.popup {position: absolute;}
+.back { background-color: gray; opacity:0.5; width: 100%; height: 300%; overflow:hidden;  z-index:1101;}
+.front { 
+z-index:1110; opacity:1; boarder:1px; margin: auto; 
+}
+.show{
+position:relative;
+max-width: 1200px; 
+max-height: 800px; 
+overflow: auto;       
+} 
+</style>
+
 <body>
+
+<div class='popup back' style="display:none;"></div>
+ <div id="popup_front" class='popup front' style="display:none;">
+ <img id="popup_img">
+</div>
 
 <form role="form" action="modifyPage" method="post">
  <input type="hidden" name="bno" value="${boardVO.bno}">

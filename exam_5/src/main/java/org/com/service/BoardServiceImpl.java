@@ -37,13 +37,27 @@ public class BoardServiceImpl implements BoardService {
 		return entity.read(bno);
 	}
 
+	@Transactional
 	@Override
 	public void modify(BoardVO vo) throws Exception {
 		entity.update(vo);
+		
+		Integer bno = vo.getBno();
+		entity.deleteAttach(bno);
+		
+		String[] files = vo.getFiles();
+		
+		if(files == null) { return; }
+		
+		for(String fileName : files) {
+			entity.replaceAttach(fileName, bno);
+		}
 	}
 
+	@Transactional
 	@Override
 	public void remove(Integer bno) throws Exception {
+		entity.deleteAttach(bno);
 		entity.delete(bno);
 	}
 
