@@ -25,12 +25,12 @@ public class UploadFileUtils {
 		String savedName = uid.toString() + "_" + originalName;
 		String savedPath = calcPath(uploadPath);
 		File target = new File(uploadPath + savedPath, savedName);
-		FileCopyUtils.copy(fileData, target);
-		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);
+		FileCopyUtils.copy(fileData, target);//임시 디렉토리에 업로드된 파일을 지정된 디렉토리로 복사
+		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);//썸네일을 생성하기 위한 파일의 확장자 검사
 		String uploadedFileName = null;
 		
 		if(MediaUtils.getMediaType(formatName) != null) {
-			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
+			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);//썸네일 생성
 		} else {
 			uploadedFileName = makeIcon(uploadPath, savedPath, savedName);
 		}

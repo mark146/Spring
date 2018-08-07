@@ -17,17 +17,18 @@
 </style>
 </head>
 <%@ include file="../include/header.jsp" %>
+<script type="text/javascript" src="/resources/js/upload.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script id="template" type="text/x-handlebars-template">
 <li>
  <span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
  <div class="mailbox-attachment-info">
  <a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
- <a href="{{fileName}}" class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
+ <a href="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
  </div>
 </li>
 </script>
-<script type="text/javascript" src="/resources/js/upload.js"></script>
+
 <script>
 $(document).ready(function() {
 var template = Handlebars.compile($("#template").html());
@@ -39,23 +40,26 @@ $(".fileDrop").on("dragenter dragover", function(event){
 $(".fileDrop").on("drop", function(event){
 	event.preventDefault();
 	
+	//드래그된 파일의 정보
 	var files = event.originalEvent.dataTransfer.files;
 	var file = files[0];
+	
+	//ajax로 전달할 폼 객체
 	var formData = new FormData();
+	//폼 객체에 파일추가, append("변수명", 값)
 	formData.append("file", file);
 	
 	$.ajax({
 		url: "/uploadAjax",
 		data: formData,
 		dataType: "text",
-		processData: false,
-		contentType: false,
+		processData: false,// true = GET방식, false => POST방식
+		contentType: false,/* true = application/x-www-form-urlencoded, false = multipart/form-data */ 
 		type: "POST",
 		success: function(data) {
 			var fileInfo = getFileInfo(data);
-			
 			var html = template(fileInfo);
-			alert("html = "+html);
+			
 			$(".uploadedList").append(html);
 		}
 	});
@@ -63,13 +67,13 @@ $(".fileDrop").on("drop", function(event){
 
 $("#registerForm").submit(function(event){
 	event.preventDefault();
-	
 	var that = $(this);
-	var str = "";
+	var str ="";
 	
-	$(".uploadedList .delbtn").each(function(index) {
-		str += "<input type='hidden' name='files["+ index +"]' value='"+ $(this).attr("href") +"'>";
+	$(".uploadedList .delbtn").each(function(index){
+		str += "<input type='hidden' name='files["+index+"]' value='"+$(this).attr("href") +"'> ";
 	});
+		
 	that.append(str);
 	that.get(0).submit();
 });
@@ -100,9 +104,7 @@ $("#registerForm").submit(function(event){
   </div>
   
   <div class="box-footer">
-   <div>
-    <hr>
-   </div>
+   <div><hr></div>
    
    <ul class="mailbox-attachments clearfix uploadedList">
    </ul>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,7 +27,7 @@
     <![endif]-->
     
   </head>
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>	
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
       

@@ -8,5 +8,6 @@ create table tbl_attach (
 alter table tbl_attach add constraint fk_board_attach
 foreign key(bno) references tbl_board(bno);
 
+drop table tbl_attach
 
-select fullname from tbl_attach where bno = 18 order by regdate
+select fullname from tbl_attach where bno = 20 order by regdate

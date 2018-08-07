@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService {
 		entity.create(vo);
 		
 		String[] files = vo.getFiles();
-		
+		System.out.println("files[0] = "+ files[0]);
 		if(files == null) { return; }
 		
 		for(String fileName : files) {

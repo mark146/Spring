@@ -65,7 +65,7 @@ function getPage(pageInfo) {
 		printPaging(data.pageMaker, $(".pagination"));
 		
 		$("#modifyModal").modal("hide");
-		$("#replycntSmall").html("[ ]" + data.pageMaker.totalCount + " ]");
+		$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
 	});
 }
 
@@ -283,12 +283,10 @@ $(".btn-primary").on("click", function(){
  </div>
  
 <div class="box-footer">
-    <div>
-    <hr>
-    </div>
+    <div><hr></div>
 	
-	<ul class="mailbox-attachments clearfix uploadedList">
-    </ul>
+   <ul class="mailbox-attachments clearfix uploadedList">
+   </ul>
  <button type="submit" class="btn btn-warning">Modify</button>
  <button type="submit" class="btn btn-danger">Remove</button>
  <button type="submit" class="btn btn-primary">List All</button>
