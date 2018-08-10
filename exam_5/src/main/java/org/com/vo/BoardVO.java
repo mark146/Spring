@@ -13,6 +13,8 @@ public class BoardVO {
 	private int replycnt;
 	private String[] files;
 	
+	
+	
 	public String[] getFiles() {
 		return files;
 	}

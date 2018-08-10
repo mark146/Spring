@@ -33,14 +33,27 @@
 	
 	<context:component-scan base-package="org.com.controller" />
 	
-	<beans:bean id="sampleInterceptor" class="org.com.interceptor.SampleInterceptor">
-	</beans:bean>
-	
+	<beans:bean id="sampleInterceptor" class="org.com.interceptor.SampleInterceptor"></beans:bean>
 	<interceptors>
 	 <interceptor>
 	  <mapping path="/doA"/>
 	  <mapping path="/doB"/>
 	  <beans:ref bean="sampleInterceptor" />
+	 </interceptor>
+	</interceptors>
+	
+	<beans:bean id="loginInterceptor" class="org.com.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="org.com.interceptor.AuthInterceptor"></beans:bean>
+	
+	<interceptors>
+	 <interceptor>
+	  <mapping path="/user/loginPost"/>
+	  <beans:ref bean="loginInterceptor" />
+	 </interceptor>
+	
+	 <interceptor>
+	  <mapping path="/sboard/register"/>
+	  <beans:ref bean="authInterceptor" />
 	 </interceptor>
 	</interceptors>
 	
