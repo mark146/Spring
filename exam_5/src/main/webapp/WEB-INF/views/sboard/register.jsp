@@ -94,7 +94,7 @@ $("#registerForm").submit(function(event){
    
    <div class="form-group">
     <label for="exampleInputEmail">Writer</label>
-    <input type="text" name="writer" class="form-control" placeholder="Enter Writer">
+    <input type="text" name="writer" class="form-control" value="${login.uid }" readonly>
    </div>
    
    <div class="form-group">

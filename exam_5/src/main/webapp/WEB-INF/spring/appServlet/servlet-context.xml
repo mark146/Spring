@@ -44,7 +44,6 @@
 	
 	<beans:bean id="loginInterceptor" class="org.com.interceptor.LoginInterceptor"></beans:bean>
 	<beans:bean id="authInterceptor" class="org.com.interceptor.AuthInterceptor"></beans:bean>
-	
 	<interceptors>
 	 <interceptor>
 	  <mapping path="/user/loginPost"/>
@@ -53,6 +52,8 @@
 	
 	 <interceptor>
 	  <mapping path="/sboard/register"/>
+	  <mapping path="/sboard/modifyPage"/>
+	  <mapping path="/sboard/removePage"/>
 	  <beans:ref bean="authInterceptor" />
 	 </interceptor>
 	</interceptors>

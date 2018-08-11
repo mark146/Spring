@@ -10,7 +10,7 @@ create table tbl_message (
  mid int NOT NULL  AUTO_INCREMENT,
  targetid varchar(50) NOT NULL,
  sender varchar(50) NOT NULL,
- message text NOT NULL,
+ message text NOT NULL,8
  opendate TIMESTAMP,
  senddate TIMESTAMP NOT NULL DEFAULT now(),
  primary key(mid)

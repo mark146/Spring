@@ -17,7 +17,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		String query = req.getQueryString();
 		
 		if(query == null || query.equals("null")) {
-			query = " ";
+			query = "";
 		} else {
 			query = "?" + query;
 		}

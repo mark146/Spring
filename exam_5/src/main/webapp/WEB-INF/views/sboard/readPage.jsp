@@ -21,8 +21,10 @@
   <h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
   <div class="timeline-body">{{replytext}}</div>
    <div class="timeline-footer">
+	{{#eqReplyer replyer}}
     <a class="btn btn-primary btn-xs"
      data-toggle="modal" data-target="#modifyModal">Modify</a>
+	{{/eqReplyer}}
    </div>
   </div>
 </li>
@@ -258,9 +260,21 @@ $(".btn-primary").on("click", function(){
 	formObj.submit();
 });
 
+Handlebars.registerHelper("eqReplyer", function(replyer, block) {
+	var accum = '';
+	if(replyer == '${login.uid}') {
+		accum += block.fn();
+	}
+	return accum;
+});
 });
 </script>
 
+<script>
+function goLogin(){
+	self.location ="/user/login";
+}
+</script>
 <!-- Main content -->
 <style type="text/css">
 .popup {position: absolute;}
@@ -311,9 +325,11 @@ overflow: auto;
 	
    <ul class="mailbox-attachments clearfix uploadedList">
    </ul>
+ <c:if test="${login.uid == boardVO.writer}">  
  <button type="submit" class="btn btn-warning">Modify</button>
  <button type="submit" class="btn btn-danger">Remove</button>
- <button type="submit" class="btn btn-primary">List All</button>
+ </c:if>
+ <button type="submit" class="btn btn-primary">Go List</button>
 </div>
  
  
@@ -325,9 +341,11 @@ overflow: auto;
 	    <h3 class="box-title">ADD NEW REPLY</h3>
 	   </div>
 	   
+	   <c:if test="${not empty login}">
 	   <div class="box-body">
 	    <label for="newReplyWriter">Writer</label>
-	    <input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter">
+	    <input class="form-control" type="text" placeholder="USER ID" 
+	    id="newReplyWriter" value="${login.uid }" readonly="readonly">
 	    <label for="newReplyText">ReplyText</label>
 	    <input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
 	   </div>
@@ -335,6 +353,13 @@ overflow: auto;
 	   <div class="box-footer">
 	    <button type="button" class="btn" id="replyAddBtn">ADD REPLY</button>
 	   </div>
+	   </c:if>
+	   
+	   <c:if test="${empty login}">
+		<div class="box-body">
+		 <div><a href="javascript:goLogin();">Login Please</a></div>
+		</div>
+	   </c:if>
 	   
 	   <!-- The Time line -->
 	   <ul class="timeline">
