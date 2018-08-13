@@ -1,15 +1,23 @@
 package org.com.interceptor;
 
+import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.com.service.UserService;
+import org.com.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.WebUtils;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+	@Inject
+	private UserService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 	
 	private void saveDest(HttpServletRequest req) {
@@ -36,6 +44,19 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if(session.getAttribute("login") == null) {
 			logger.info("Current user is not logined");
 			saveDest(request);
+			
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			
+			if(loginCookie != null) {
+				UserVO vo = service.checkLoginBefore(loginCookie.getValue());
+				logger.info("UserVO: "+ vo);
+				
+				if(vo != null) {
+					session.setAttribute("login", vo);
+					return true;
+				}
+			}
+			
 			response.sendRedirect("/user/login");
 			return false;
 		}

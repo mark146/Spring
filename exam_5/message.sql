@@ -22,6 +22,12 @@ foreign key (targetid) references tbl_user(uid);
 alter table tbl_message add constraint fk_usersender
 foreign key(targetid) references tbl_user(uid);
 
+alter table tbl_user add column
+sessionkey varchar(50) not null default 'none';
+
+alter table tbl_user
+add column sessionlimit timestamp;
+
 insert into tbl_user(uid, upw, uname, upoint) values ('user00', 'user01', 'IRON MAN');
 insert into tbl_user(uid, upw, uname) values ('user01', 'user01', 'CAPTAIN');
 insert into tbl_user(uid, upw, uname) values ('user02', 'user02', 'HULK');
