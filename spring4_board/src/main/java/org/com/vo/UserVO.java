@@ -1,24 +1,20 @@
 package org.com.vo;
 
 public class UserVO {
+	
+	private String uid;
+	private String upw;
 
-	private String email;
-	private String password;
-
-	public String getEmail() {
-		return email;
+	public String getUid() {
+		return uid;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
-
-	public String getPassword() {
-		return password;
+	public String getUpw() {
+		return upw;
 	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUpw(String upw) {
+		this.upw = upw;
 	}
-
 }

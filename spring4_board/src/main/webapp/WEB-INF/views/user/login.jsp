@@ -10,13 +10,13 @@
 
 <form:form commandName="vo">
 <form:errors element="div" />
-<label for="email">이메일</label>: 
-<input type="text" name="email" id="email" value="${vo.email}">
-<form:errors path="email"/> <br>
+<label for="uid">아이디</label>: 
+<input type="text" name="uid" id="uid" value="${vo.uid}">
+<form:errors path="uid"/> <br>
 
-<label for="password">암호</label>: 
-<input type="password" name="password" id="password">
-<form:errors path="password"/> <br>
+<label for="upw">암호</label>: 
+<input type="password" name="upw" id="upw">
+<form:errors path="upw"/> <br>
 <br/>
 
 <input type="submit" value="로그인">
