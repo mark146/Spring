@@ -3,6 +3,8 @@ package org.com.controller;
 import javax.servlet.http.*;
 import javax.validation.Valid;
 import org.com.vo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.com.exception.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -14,6 +16,7 @@ import org.com.validator.LoginCommandValidator;
 @RequestMapping("/user")
 public class UserController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	private static final String LOGIN_FORM = "user/login";
 
 	@InitBinder
@@ -23,7 +26,7 @@ public class UserController {
 	
 	@RequestMapping(value="/login", method= RequestMethod.GET)
 	public void loginGET(@ModelAttribute("vo") UserVO vo) {
-		System.out.println("loginGET");
+		logger.info("loginGET");
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
@@ -31,7 +34,7 @@ public class UserController {
 		if (errors.hasErrors()) {
 			return LOGIN_FORM;
 		}
-		System.out.println("loginPOST");
+		logger.info("loginPOST");
 		try {
 			session.setAttribute("login", vo);
 			return "redirect:/";
