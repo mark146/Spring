@@ -9,13 +9,6 @@
 <body>
 <%@ include file="include/header.jsp" %>
 
-<c:if test="${! empty login}">
-<h3>${login.uid}님 어서오세요</h3>
-<a href="user/logout">로그아웃</a>
-</c:if>
-<c:if test="${empty login}">
-<a href="user/login">로그인</a>
-</c:if>
 <h1>
 	Hello world!  
 </h1>

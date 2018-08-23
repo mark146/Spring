@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
 </head>
-<%@ include file="../include/header.jsp" %>
 <body>
 
 <form:form commandName="vo">
