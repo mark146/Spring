@@ -8,6 +8,6 @@
 <body>
 어드민(연결 계정: <sec:authentication property="name"/>) 메인 화면입니다.
 <br/>
-<a href="<c:url value='/index'/>">[/index로 가기]</a>
+<a href="<c:url value='/'/>">[홈으로 가기]</a>
 </body>
 </html>

@@ -10,6 +10,6 @@
 <sec:authentication property="name"/>님,
 </sec:authorize>
 홈 메인 화면입니다.
-<a href="<c:url value='/index'/>">[/index로 가기]</a>
+<a href="<c:url value='/'/>">[홈으로 가기]</a>
 </body>
 </html>

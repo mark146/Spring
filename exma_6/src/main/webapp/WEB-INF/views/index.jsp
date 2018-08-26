@@ -11,10 +11,24 @@
 <sec:authentication property="name"/>님 환영합니다.
 </sec:authorize>
 <ul>
-	<li><a href="<c:url value='/homeMain' />">/home/main</a></li>
-	<li><a href="<c:url value='/memberMain' />">/member/main</a></li>
-	<li><a href="<c:url value='/managerMain' />">/manager/main</a></li>
-	<li><a href="<c:url value='/adminMain' />">/admin/main</a></li>
+	<li><a href="<c:url value='/homeMain' />">홈으로</a></li>
+	<sec:authorize access="! isAuthenticated()">
+	<a href="<c:url value='/login' />">로그인</a>
+	<a href="<c:url value='/user/memberForm' />">회원가입</a>
+	</sec:authorize>
+	
+	<sec:authorize access="hasAuthority('USER')">
+	<li><a href="<c:url value='/memberMain' />">회원메인</a></li>
+	</sec:authorize>
+	
+	<sec:authorize access="hasAuthority('USER_MANAGER')">
+	<li><a href="<c:url value='/managerMain' />">사용자 관리자</a></li>
+	</sec:authorize>
+
+	<sec:authorize access="hasAuthority('USER_ADMIN')">
+	<li><a href="<c:url value='/adminMain' />">어드민 관리자</a></li>
+	</sec:authorize>
+
 	<sec:authorize access="isAuthenticated()">
 	 <form:form action="/controller/logout" method="POST">
         <input type="submit" value="로그아웃" />
