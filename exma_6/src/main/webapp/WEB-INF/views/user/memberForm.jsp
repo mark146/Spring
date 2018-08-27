@@ -16,9 +16,9 @@
     <form:password path="upw"/> 
     <form:errors path="upw"/> <br/>
     
-    <label for="upw">암호 확인</label>:
-    <form:password path="upw"/> 
-    <form:errors path="upw"/> <br/>
+    <label for="confirm">암호 확인</label>:
+    <form:password path="confirm"/> 
+    <form:errors path="confirm"/> <br/>
     
     <input type="submit" value="가입" />
 </form:form>

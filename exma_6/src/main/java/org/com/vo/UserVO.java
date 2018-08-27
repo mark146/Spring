@@ -4,7 +4,8 @@ public class UserVO {
 	
 	private String uid;
 	private String upw;
-
+	private String confirm;
+	
 	public String getUid() {
 		return uid;
 	}
@@ -16,5 +17,11 @@ public class UserVO {
 	}
 	public void setUpw(String upw) {
 		this.upw = upw;
+	}
+	public String getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 }
