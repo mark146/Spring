@@ -1,13 +1,13 @@
 package org.com.controller;
 
 import javax.servlet.http.*;
-import javax.validation.Valid;
 import org.com.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.com.exception.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.*;
 import org.springframework.web.bind.annotation.*;
 import org.com.validator.LoginCommandValidator;
@@ -30,7 +30,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String loginPOST(@ModelAttribute("vo") @Valid UserVO vo, Errors errors, HttpSession session) throws Exception {
+	public String loginPOST(@ModelAttribute("vo") @Validated UserVO vo, Errors errors, HttpSession session) throws Exception {
 		if (errors.hasErrors()) {
 			return LOGIN_FORM;
 		}

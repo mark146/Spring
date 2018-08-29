@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.com</groupId>
 	<artifactId>controller</artifactId>
-	<name>exma_6</name>
+	<name>exam_6</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -14,7 +14,6 @@
 		<org.slf4j-version>1.8.0-beta2</org.slf4j-version>
 		<org.springframework.security>5.0.7.RELEASE</org.springframework.security>
 	</properties>
-	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -34,8 +33,8 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		<!-- 스프링 시큐리티 -->
+
+	<!-- 스프링 시큐리티 -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-web</artifactId>
@@ -70,7 +69,7 @@
 		  <type>jar</type> 
 		  <scope>compile</scope> 
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -113,7 +112,7 @@
 			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 			<version>1.16</version>
 		</dependency>
-		
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -194,6 +193,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>        
 	</dependencies>
     <build>
@@ -212,18 +212,21 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
+			<plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.7.0</version>
+			    <configuration>
+		     	   <release>10</release>
+    			</configuration>
+			    <dependencies>
+        			<dependency>
+            			<groupId>org.ow2.asm</groupId>
+            			<artifactId>asm</artifactId>
+            			<version>6.2</version> <!-- Use newer version of ASM -->
+        			</dependency>
+			    </dependencies>
+			</plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

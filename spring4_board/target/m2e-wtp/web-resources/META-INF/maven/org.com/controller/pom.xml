@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.com</groupId>
 	<artifactId>controller</artifactId>
-	<name>spring4_board</name>
+	<name>exam_6</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -32,6 +32,42 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
+		</dependency>
+
+	<!-- 스프링 시큐리티 -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-web</artifactId>
+    		<version>${org.springframework.security}</version>
+		</dependency>
+ 
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-config</artifactId>
+    		<version>${org.springframework.security}</version>
+		</dependency>
+ 
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-taglibs</artifactId>
+    		<version>${org.springframework.security}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-framework-bom</artifactId>
+			<version>${org.springframework.security}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+		
+		<!-- CGLib -->
+		<dependency>
+		  <groupId>cglib</groupId>
+		  <artifactId>cglib</artifactId>
+		  <version>3.2.7</version>
+		  <type>jar</type> 
+		  <scope>compile</scope> 
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
@@ -75,63 +111,6 @@
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 			<version>1.16</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-		<dependency>
-    		<groupId>javax.validation</groupId>
-    		<artifactId>validation-api</artifactId>
-    		<version>2.0.1.Final</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-		<dependency>
-    		<groupId>org.hibernate.validator</groupId>
-    		<artifactId>hibernate-validator</artifactId>
-    		<version>6.0.12.Final</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator-annotation-processor -->
-		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-validator-annotation-processor</artifactId>
-    		<version>6.0.12.Final</version>
-		</dependency>
-		
-		<!-- 스프링 시큐리티 -->
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-web</artifactId>
-    		<version>${org.springframework.security}</version>
-		</dependency>
- 
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-config</artifactId>
-    		<version>${org.springframework.security}</version>
-		</dependency>
- 
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-taglibs</artifactId>
-    		<version>${org.springframework.security}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-framework-bom</artifactId>
-			<version>${org.springframework.security}</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-		
-		<!-- CGLib -->
-		<dependency>
-		  <groupId>cglib</groupId>
-		  <artifactId>cglib</artifactId>
-		  <version>3.2.7</version>
-		  <type>jar</type> 
-		  <scope>compile</scope> 
 		</dependency>
 
 		<!-- AspectJ -->
@@ -233,18 +212,21 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
+			<plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.7.0</version>
+			    <configuration>
+		     	   <release>10</release>
+    			</configuration>
+			    <dependencies>
+        			<dependency>
+            			<groupId>org.ow2.asm</groupId>
+            			<artifactId>asm</artifactId>
+            			<version>6.2</version> <!-- Use newer version of ASM -->
+        			</dependency>
+			    </dependencies>
+			</plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
