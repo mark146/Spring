@@ -38,4 +38,10 @@ public class HomeController {
 	@RequestMapping(value = "/memberMain", method = RequestMethod.GET)
 	public void memberMain() {
 	}	
+	
+	@RequestMapping(value = "/error_common", method = RequestMethod.GET)
+	public String error() {
+		return "/error/404";
+	}	
+	
 }

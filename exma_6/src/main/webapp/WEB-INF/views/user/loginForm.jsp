@@ -10,9 +10,12 @@
 <c:if test="${param.error == 'true'}">
 <strong>아이디와 암호가 일치하지 않습니다.</strong>
 </c:if>
-<form action="<c:url value='/user/login'/>" method="post">
-    <label for="name">사용자ID</label>:
-    <input type="text" name="userid" /> 
+<%
+	String contextPath = request.getContextPath();
+%>
+<form action="<c:url value='<%=contextPath %>+"/login"'/>" method="post">
+    <label for="username">사용자ID</label>:
+    <input type="text" name="username" /> 
     <br/>
     
     <label for="password">암호</label>:
