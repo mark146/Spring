@@ -10,26 +10,31 @@
 <sec:authorize access="isAuthenticated()">
 <sec:authentication property="name"/>님 환영합니다.
 </sec:authorize>
+<h1>
+	Hello world!  
+</h1>
+
+<P>  The time on the server is ${serverTime}. </P>
 <ul>
-	<li><a href="<c:url value='/homeMain' />">홈으로</a></li>
 	<sec:authorize access="! isAuthenticated()">
 	<a href="<c:url value='/login' />">로그인</a>
 	<a href="<c:url value='/user/memberForm' />">회원가입</a>
 	</sec:authorize>
 	
 	<sec:authorize access="hasAuthority('USER')">
-	<li><a href="<c:url value='/memberMain' />">회원메인</a></li>
+	<li><a href="<c:url value='/user/memberMain' />">회원메인</a></li>
 	</sec:authorize>
 	
 	<sec:authorize access="hasAuthority('USER_MANAGER')">
-	<li><a href="<c:url value='/managerMain' />">사용자 관리자</a></li>
+	<li><a href="<c:url value='/user/managerMain' />">사용자 관리자</a></li>
 	</sec:authorize>
 
 	<sec:authorize access="hasAuthority('USER_ADMIN')">
-	<li><a href="<c:url value='/adminMain' />">어드민 관리자</a></li>
+	<li><a href="<c:url value='/user/adminMain' />">어드민 관리자</a></li>
 	</sec:authorize>
 
 	<sec:authorize access="isAuthenticated()">
+	<a href="<c:url value='/sessions'/>">[접속자 확인]</a>
 	 <form:form action="/controller/logout" method="POST">
         <input type="submit" value="로그아웃" />
     </form:form>

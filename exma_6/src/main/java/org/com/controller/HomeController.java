@@ -1,12 +1,15 @@
 package org.com.controller;
 
 import java.text.DateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Locale;
+import org.com.session.SessionRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
@@ -22,26 +25,16 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		return "index";
 	}
-	
-	@RequestMapping(value = "/homeMain", method = RequestMethod.GET)
-	public void homeMain() {
-	}
-	
-	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
-	public void adminMain() {
-	}
-	
-	@RequestMapping(value = "/managerMain", method = RequestMethod.GET)
-	public void managerMain() {
-	}
-	
-	@RequestMapping(value = "/memberMain", method = RequestMethod.GET)
-	public void memberMain() {
-	}	
-	
+
 	@RequestMapping(value = "/error_common", method = RequestMethod.GET)
 	public String error() {
 		return "/error/404";
 	}	
 	
+	@RequestMapping(value = "/sessions", method = RequestMethod.GET)
+	protected void sessions(Model model)
+    {
+		model.addAttribute("numberOfSessions",SessionRegistry.getNumberOfSessions());
+		model.addAttribute("sessionList", SessionRegistry.getAllSessions());
+    }
 }

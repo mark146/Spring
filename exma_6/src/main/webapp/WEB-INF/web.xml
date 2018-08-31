@@ -61,4 +61,12 @@
   </error-page>
   
   <distributable />
+ 
+ <!-- 세션 동시성 제어 --> 
+ <listener> 
+	<listener-class>
+	org.springframework.security.web.session.HttpSessionEventPublisher
+	</listener-class> 
+</listener>
+
 </web-app>
