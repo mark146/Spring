@@ -27,6 +27,7 @@ public final class SessionRegistry
     public static void removeSession(HttpSession session)
     {
         SESSIONS.remove(session.getId());
+        System.out.println(SESSIONS.size());
     }
 
     public static List<HttpSession> getAllSessions()

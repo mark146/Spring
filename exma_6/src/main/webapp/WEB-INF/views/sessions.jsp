@@ -32,12 +32,10 @@
             long timestamp = System.currentTimeMillis();
             for(HttpSession aSession : sessions)
             {
-                out.print(aSession.getId() + " - " +
-                        aSession.getAttribute("username"));
+                out.print(aSession.getId() + " - " + aSession.getAttribute("username"));
                 if(aSession.getId().equals(session.getId()))
                     out.print(" (you)");
-                out.print(" - last active " +
-                        toString(timestamp - aSession.getLastAccessedTime()));
+                out.print(" - last active " + toString(timestamp - aSession.getLastAccessedTime()));
                 out.println(" ago<br />");
             }
         %>

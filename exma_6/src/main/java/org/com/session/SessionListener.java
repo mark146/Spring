@@ -20,6 +20,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
         System.out.println(this.date() + ": Session " + e.getSession().getId() +
                 " created.");
         SessionRegistry.addSession(e.getSession());
+        System.out.println(this.date() + ": Session size() "+ SessionRegistry.getNumberOfSessions());
     }
 
     @Override
@@ -28,6 +29,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
         System.out.println(this.date() + ": Session " + e.getSession().getId() +
                 " destroyed.");
         SessionRegistry.removeSession(e.getSession());
+        System.out.println(this.date() + ": Session size() "+ SessionRegistry.getNumberOfSessions());
     }
 
     @Override
@@ -36,6 +38,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
         System.out.println(this.date() + ": Session ID " + oldSessionId +
                 " changed to " + e.getSession().getId());
         SessionRegistry.updateSessionId(e.getSession(), oldSessionId);
+        System.out.println(this.date() + ": Session size() "+ SessionRegistry.getNumberOfSessions());
     }
 
     private String date()

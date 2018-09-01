@@ -1,3 +1,4 @@
+<%@ page session="false" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -34,7 +35,7 @@
 	</sec:authorize>
 
 	<sec:authorize access="isAuthenticated()">
-	<a href="<c:url value='/sessions'/>">[접속자 확인]</a>
+	<a href="<c:url value='/sessions'/>">[사용자 목록]</a>
 	 <form:form action="/controller/logout" method="POST">
         <input type="submit" value="로그아웃" />
     </form:form>
