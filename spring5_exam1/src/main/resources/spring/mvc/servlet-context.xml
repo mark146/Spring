@@ -8,6 +8,16 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:property name="defaultEncoding" value="uft-8" />
+	<!-- 1024 * 1024 * 10 bytes 10MB -->
+	<beans:property name="maxUploadSize" value="104857560" />
+	<!-- 1024 * 1024 * 2 bytes 2MB -->
+	<beans:property name="maxUploadSizePerFile" value="2097152" />
+	<beans:property name="uploadTempDir" value="file:/C:/upload/tmp" />
+	<beans:property name="maxInMemorySize" value="10485756" />
+	</beans:bean>
+	
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
@@ -22,5 +32,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.spring.controller" />
+	<context:component-scan base-package="com.spring.exception" />
 	
 </beans:beans>
