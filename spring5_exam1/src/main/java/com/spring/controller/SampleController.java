@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import comspring.domain.SampleDTO;
-import comspring.domain.SampleDTOList;
-import comspring.domain.TodoDTO;
+import com.spring.domain.SampleDTO;
+import com.spring.domain.SampleDTOList;
+import com.spring.domain.TodoDTO;
+
 import lombok.extern.log4j.Log4j;
 
 @Controller

@@ -1,4 +1,4 @@
-package comspring.domain;
+package com.spring.domain;
 
 import java.util.ArrayList;
 import java.util.List;
