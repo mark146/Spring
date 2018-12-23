@@ -3,7 +3,6 @@ package com.spring.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.spring.domain.SampleDTO;
 import com.spring.domain.SampleDTOList;
 import com.spring.domain.TodoDTO;
-
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -93,7 +90,7 @@ public class SampleController {
 	public String ex04(SampleDTO dto,@ModelAttribute("page") int page) {
 		log.info("dto: "+dto);
 		log.info("page: "+page);
-		return "ex04";
+		return "/sample/ex04";
 	}
 	
 	@GetMapping("/ex06")
@@ -107,7 +104,6 @@ public class SampleController {
 	
 	@GetMapping("/ex07")
 	public ResponseEntity<String> ex07() {
-		
 		log.info("/ex07");
 		String msg = "{\"name\": \"홍길동\"}";
 		HttpHeaders header = new HttpHeaders();
